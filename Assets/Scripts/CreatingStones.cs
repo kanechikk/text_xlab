@@ -6,11 +6,8 @@ public class CreatingStones : MonoBehaviour
 {
     public GameObject stone;
 
-    void Update()
+    public void StoneDrop()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Instantiate(stone, new Vector3(61, 40.3f, -45.3f), Quaternion.Euler(0, 0, 0));
-        }
+        Instantiate(stone, new Vector3(61, 40.3f, -45.3f), Quaternion.Euler(0, 0, 0));
     }
 }
