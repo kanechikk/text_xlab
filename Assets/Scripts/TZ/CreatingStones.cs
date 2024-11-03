@@ -16,14 +16,6 @@ public class CreatingStones : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-            {
-                StoneDrop();
-            }
-    }
-
     public void StoneDrop()
     {
         Instantiate(stone, m_point.position, m_point.rotation);
