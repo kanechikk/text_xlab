@@ -40,7 +40,7 @@ namespace Golf
 
                 stone.onCollisionStone += OnCollisionStone;
 
-                m_stones.Add(stone);
+                //m_stones.Add(stone);
             }
 
         }

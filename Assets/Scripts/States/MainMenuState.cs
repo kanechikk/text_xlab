@@ -14,7 +14,7 @@ namespace Golf
         private void OnEnable()
         {
             mainMenuUI.SetActive(true);
-            scoreText.text = $"TOP SCORE: {GameInstance.Score}"; 
+            //scoreText.text = $"TOP SCORE: {GameInstance.Score}"; 
         }
 
         private void OnDisable()
