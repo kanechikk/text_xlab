@@ -16,8 +16,8 @@ public class CreatingStones : MonoBehaviour
         }
     }
 
-    public void StoneDrop()
+    public GameObject StoneDrop()
     {
-        Instantiate(stone, m_point.position, m_point.rotation);
+        return Instantiate(stone, m_point.position, m_point.rotation);
     }
 }

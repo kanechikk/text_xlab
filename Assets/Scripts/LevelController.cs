@@ -6,29 +6,54 @@ namespace Golf
 {
     public class LevelController : MonoBehaviour
     {
-        [SerializeField]
-        private CreatingStones stones;
-
+        public Stick stick;
+        public CreatingStones stoneSpawner;
+        private float m_timer;
         [SerializeField]
         private float m_delay = 2f;
-        private float m_timer;
+        private uint m_score = 0;
+
+        private List<Stone> m_stones = new List<Stone>();
 
         public void OnEnable()
         {
             m_timer = Time.time - m_delay;
+            stick.onCollisionStone += OnCollisionStick;
+        }
+
+        private void OnDisable()
+        {
+            if (stick)
+            {
+                stick.onCollisionStone -= OnCollisionStone;
+            }
         }
 
         private void Update()
         {
-            if (stones != null)
+            if (Time.time > m_timer + m_delay)
             {
-                if (Time.time > m_timer + m_delay)
-                {
-                    m_timer = Time.time;
-                    stones.StoneDrop();
-                }
+                m_timer = Time.time;
+
+                var go = stoneSpawner.StoneDrop();
+                var stone = go.GetComponent<Stone>();
+
+                stone.onCollisionStone += OnCollisionStone;
+
+                m_stones.Add(stone);
             }
 
+        }
+
+        private void OnCollisionStick()
+        {
+            m_score++; 
+            Debug.Log($"score: {m_score}");
+        }
+
+        private void OnCollisionStone()
+        {
+            Debug.Log("GAME OVER!!!");
         }
     }
 }

@@ -33,12 +33,6 @@ namespace Golf
             m_isDown = true;
         }
 
-        private void Update()
-        {
-            m_dir = (point.position - m_lastPointPosition).normalized;
-            m_lastPointPosition = point.position;  
-        }
-
         private void FixedUpdate()
         {
             Vector3 angle = transform.localEulerAngles;
@@ -51,6 +45,9 @@ namespace Golf
                 angle.x = Mathf.MoveTowardsAngle(angle.x, maxAngle, speed * Time.deltaTime);
             }
             transform.localEulerAngles = angle;
+
+            m_dir = (point.position - m_lastPointPosition).normalized;
+            m_lastPointPosition = point.position;  
         }
 
         private void OnCollisionEnter(Collision other)
