@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 namespace Golf
 {
-    [CustomEditor (typeof (MeshCollider))]
-    public class RemoveMeshColiderEditor : MonoBehaviour
+    [CustomEditor (typeof (RemoveMeshCollider))]
+    public class RemoveMeshColliderEditor : Editor
     {
         public override void OnInspectorGUI () {
 		DrawDefaultInspector ();

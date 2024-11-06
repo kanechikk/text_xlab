@@ -6,17 +6,30 @@ namespace Golf
 {
     public class PlayerController : MonoBehaviour
     {
-        public Stick stick;
+        public Strike strike;
+        //public Stick stick;
 
         private void FixedUpdate()
         {
-            if (Input.GetMouseButton(0))
+            // if (Input.GetMouseButton(0))
+            // {
+            //     stick.Down();
+            // }
+            // else
+            // {
+            //     stick.Up();
+            // }
+
+            if (strike != null)
             {
-                stick.Down();
-            }
-            else
-            {
-                stick.Up();
+                if (Input.GetMouseButton(0))
+                {
+                    strike.Forward();
+                }
+                else
+                {
+                    strike.Backwards();
+                }
             }
         }
     }
