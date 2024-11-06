@@ -9,6 +9,7 @@ namespace Golf
     {
         public event Action onCollisionApple;
         public bool isDirty = false;
+        public bool inBusket = false;
 
         private void OnCollisionEnter(Collision other)
         {

@@ -36,6 +36,7 @@ namespace Golf
                 apple.isDirty = true;
                 var contact = other.contacts[0];
                 other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
+                other.rigidbody.drag = 1;
                 onCollisionApple?.Invoke();
             }
         }

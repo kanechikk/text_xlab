@@ -8,6 +8,7 @@ namespace Golf
     public class LevelController : MonoBehaviour
     {
         public Stick stick;
+        public Basket basket;
         public CreatingStones appleSpawner;
         private float m_timer;
         [SerializeField]
@@ -23,7 +24,6 @@ namespace Golf
         {
             m_timer = Time.time - m_delay;
             stick.onCollisionApple += OnCollisionStick;
-
             m_score = 0;
 
             ClearApples();
@@ -56,21 +56,29 @@ namespace Golf
                 var go = appleSpawner.StoneDrop();
                 var apple = go.GetComponent<Apple>();
 
-                apple.onCollisionApple += OnCollisionStone;
+                apple.onCollisionApple += OnCollisionApple;
+                basket.onTriggerApple += OnTriggerBasket;
 
                 m_apples.Add(apple);
             }
 
         }
 
-        private void OnCollisionStick()
+        private void OnTriggerBasket()
         {
-            m_score++; 
+            m_score++;
             Debug.Log($"score: {m_score}");
             onScoreInc?.Invoke(m_score);
         }
 
-        private void OnCollisionStone()
+        private void OnCollisionStick()
+        {
+            //m_score++; 
+            //Debug.Log($"score: {m_score}");
+            //onScoreInc?.Invoke(m_score);
+        }
+
+        private void OnCollisionApple()
         {
             Debug.Log("GAME OVER!!!");
             onGameOver?.Invoke(m_score);
