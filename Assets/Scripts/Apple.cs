@@ -31,11 +31,8 @@ namespace Golf
         {
             if (!inBusket)
             {
-                Debug.Log("point 1");
                 inBusket = true;
-                Debug.Log("point 2");
                 onTriggerApple?.Invoke();
-                Debug.Log("point 3");
             }
         }
     }
