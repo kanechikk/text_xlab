@@ -8,7 +8,7 @@ namespace Golf
     public class LevelController : MonoBehaviour
     {
         public Stick stick;
-        public Basket basket;
+        //public Basket basket;
         public CreatingStones appleSpawner;
         private float m_timer;
         [SerializeField]
@@ -57,7 +57,7 @@ namespace Golf
                 var apple = go.GetComponent<Apple>();
 
                 apple.onCollisionApple += OnCollisionApple;
-                basket.onTriggerApple += OnTriggerBasket;
+                apple.onTriggerApple += OnTriggerBasket;
 
                 m_apples.Add(apple);
             }
