@@ -5,9 +5,9 @@ using System;
 
 namespace Golf
 {
-    public class Stone : MonoBehaviour
+    public class Apple : MonoBehaviour
     {
-        public event Action onCollisionStone;
+        public event Action onCollisionApple;
         public bool isDirty = false;
 
         private void OnCollisionEnter(Collision other)
@@ -17,9 +17,11 @@ namespace Golf
                 return;
             }
 
-            if (other.gameObject.GetComponent<Stone>())
+            if (other.gameObject.TryGetComponent<Apple>(out var apple))
             {
-                onCollisionStone?.Invoke();
+                apple.isDirty = true;
+
+                onCollisionApple?.Invoke();
             }
         }
     }

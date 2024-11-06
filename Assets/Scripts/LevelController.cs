@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,26 +8,43 @@ namespace Golf
     public class LevelController : MonoBehaviour
     {
         public Stick stick;
-        public CreatingStones stoneSpawner;
+        public CreatingStones appleSpawner;
         private float m_timer;
         [SerializeField]
         private float m_delay = 2f;
-        private uint m_score = 0;
+        private int m_score = 0;
 
-        private List<Stone> m_stones = new List<Stone>();
+        private List<Apple> m_apples = new List<Apple>();
+
+        public event Action<int> onGameOver;
+        public event Action<int> onScoreInc;
 
         public void OnEnable()
         {
             m_timer = Time.time - m_delay;
-            stick.onCollisionStone += OnCollisionStick;
+            stick.onCollisionApple += OnCollisionStick;
+
+            m_score = 0;
+
+            ClearApples();
         }
 
         private void OnDisable()
         {
             if (stick)
             {
-                stick.onCollisionStone -= OnCollisionStone;
+                stick.onCollisionApple -= OnCollisionStick;
             }
+        }
+
+        private void ClearApples()
+        {
+            foreach (var apple in m_apples)
+            {
+                Destroy(apple.gameObject);
+            }
+
+            m_apples.Clear();
         }
 
         private void Update()
@@ -35,12 +53,12 @@ namespace Golf
             {
                 m_timer = Time.time;
 
-                var go = stoneSpawner.StoneDrop();
-                var stone = go.GetComponent<Stone>();
+                var go = appleSpawner.StoneDrop();
+                var apple = go.GetComponent<Apple>();
 
-                stone.onCollisionStone += OnCollisionStone;
+                apple.onCollisionApple += OnCollisionStone;
 
-                //m_stones.Add(stone);
+                m_apples.Add(apple);
             }
 
         }
@@ -49,11 +67,13 @@ namespace Golf
         {
             m_score++; 
             Debug.Log($"score: {m_score}");
+            onScoreInc?.Invoke(m_score);
         }
 
         private void OnCollisionStone()
         {
             Debug.Log("GAME OVER!!!");
+            onGameOver?.Invoke(m_score);
         }
     }
 }

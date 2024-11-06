@@ -26,10 +26,6 @@ namespace Golf
                 {
                     strike.Forward();
                 }
-                else
-                {
-                    strike.Backwards();
-                }
             }
         }
     }
