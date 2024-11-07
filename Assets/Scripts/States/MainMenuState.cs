@@ -9,7 +9,7 @@ namespace Golf
     {
         public GameObject mainMenuUI;
         public GamePlayState gamePlayState;
-        public TMPro.TextMeshProUGUI scoreText;
+        public TextMeshProUGUI scoreText;
 
         private void OnEnable()
         {
