@@ -9,13 +9,13 @@ namespace Golf
     {
         public GameObject mainMenuUI;
         public GamePlayState gamePlayState;
-        public TextMeshProUGUI scoreText;
+        //public TextMeshProUGUI scoreText;
 
         private void OnEnable()
         {
             mainMenuUI.SetActive(true);
             
-            scoreText.text = $"TOP SCORE: {GameInstance.score}";
+            //scoreText.text = $"TOP SCORE: {GameInstance.score}";
         }
 
         private void OnDisable()

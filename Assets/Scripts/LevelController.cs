@@ -20,8 +20,11 @@ namespace Golf
 
         private List<Apple> m_apples = new List<Apple>();
 
-        public event Action<int> onGameOver;
+        public event Action<bool> onGameOver;
         public event Action<int> onScoreInc;
+        public event Action<int> onHealthDec;
+
+        public int goal;
 
         public void OnEnable()
         {
@@ -68,38 +71,44 @@ namespace Golf
         {
             Debug.Log(health);
             health--;
+            onHealthDec?.Invoke(health);
             if (health == 0)
             {
-                GameOver();
+                onGameOver?.Invoke(false);
             }
         }
 
-        private void GameOver()
-        {
-            Debug.Log("GAME OVER!!!");
-            onGameOver?.Invoke(m_score);
-        }
+        // private void GameOver()
+        // {
+        //     Debug.Log("GAME OVER!!!");
+        //     onGameOver?.Invoke(false);
+        // }
 
         private void OnTriggerBasket()
         {
             m_score++;
             Debug.Log($"score: {m_score}");
             onScoreInc?.Invoke(m_score);
+
+            if (m_score == goal)
+            {
+                onGameOver?.Invoke(true);
+            }
         }
 
-        private void OnCollisionStick()
-        {
-            //m_score++; 
-            //Debug.Log($"score: {m_score}");
-            //onScoreInc?.Invoke(m_score);
-        }
+        // private void OnCollisionStick()
+        // {
+        //     //m_score++; 
+        //     //Debug.Log($"score: {m_score}");
+        //     //onScoreInc?.Invoke(m_score);
+        // }
 
 
 
-        private void OnCollisionApple()
-        {
-            // Debug.Log("GAME OVER!!!");
-            // onGameOver?.Invoke(m_score);
-        }
+        // private void OnCollisionApple()
+        // {
+        //     // Debug.Log("GAME OVER!!!");
+        //     // onGameOver?.Invoke(m_score);
+        // }
     }
 }

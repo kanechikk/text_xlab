@@ -6,24 +6,36 @@ namespace Golf
 {
     public class GameOverState : MonoBehaviour
     {
-        public GameObject rootUI;
+        public GameObject loseUI;
+        public GameObject winUI;
         public MainMenuState mainMenuState;
         public GamePlayState gamePlayState;
+        public bool isWin = false;
 
         private void OnEnable()
         {
-            rootUI.SetActive(true);           
+            if (isWin)
+            {
+                winUI.SetActive(true);
+            }
+            else
+            {
+                loseUI.SetActive(true);   
+            }     
         }
 
         private void OnDisable()
         {
-            if (rootUI)
+            if (loseUI && !isWin)
             {
-                rootUI.SetActive(false);
+                loseUI.SetActive(false);
+            }
+            else if (winUI && isWin)
+            {
+                winUI.SetActive(false);
             }
         }
         
-
         public void Restart()
         {
             gameObject.SetActive(false);

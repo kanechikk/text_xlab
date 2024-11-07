@@ -11,6 +11,7 @@ namespace Golf
         public LevelController levelController;
         public GameObject rootUI;
         public TMPro.TextMeshProUGUI scoreText;
+        private GameObject[] healthBar = new GameObject[3];
 
         private void OnEnable()
         {
@@ -18,11 +19,23 @@ namespace Golf
             playerController.enabled = true;
             levelController.enabled = true;
 
+            for (int i = 0; i < healthBar.Length; i++)
+            {
+                healthBar[i] = rootUI.transform.GetChild(i).gameObject;
+                healthBar[i].SetActive(true);
+            }
+
             levelController.onGameOver += OnGameOver;
             levelController.onScoreInc += OnScoreInc;
 
             OnScoreInc(0);
         }
+
+        private void Update()
+        {
+            levelController.onHealthDec += OnHealthDec;
+        }
+
 
         private void OnDisable()
         {
@@ -44,17 +57,35 @@ namespace Golf
             }
         }
 
-        private void OnScoreInc(int score)
+        private void OnHealthDec(int health)
         {
-            scoreText.text = $"SCORE: {score}";
+            if (health == 2)
+            {
+                healthBar[0].SetActive(false);
+            }
+            else if (health == 1)
+            {
+                healthBar[1].SetActive(false);
+            }
+            else 
+            {
+                healthBar[2].SetActive(false);
+            }
         }
 
-        private void OnGameOver(int score)
+        private void OnScoreInc(int score)
         {
-            GameInstance.score = Mathf.Max(GameInstance.score, score);
+            scoreText.text = $"SCORE: {score}/{levelController.goal}";
+        }
 
+        private void OnGameOver(bool win)
+        {
             gameObject.SetActive(false);
-
+            
+            if (win)
+            {
+                gameOverState.isWin = true;
+            }
             gameOverState.gameObject.SetActive(true);
         }
     }
