@@ -19,9 +19,9 @@ namespace Golf
                 return;
             }
 
-            if (other.gameObject.TryGetComponent<Apple>(out var apple))
+            if (other.gameObject.TryGetComponent<Ground>(out var ground))
             {
-                apple.isDirty = true;
+                isDirty = true;
 
                 onCollisionApple?.Invoke();
             }

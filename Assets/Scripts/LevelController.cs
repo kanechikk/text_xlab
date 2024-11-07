@@ -9,12 +9,14 @@ namespace Golf
     public class LevelController : MonoBehaviour
     {
         public Stick stick;
+        public Ground ground;
         //public Basket basket;
         public CreatingStones appleSpawner;
         private float m_timer;
         [SerializeField]
         private float m_delay = 2f;
         private int m_score = 0;
+        private int health = 3;
 
         private List<Apple> m_apples = new List<Apple>();
 
@@ -24,18 +26,15 @@ namespace Golf
         public void OnEnable()
         {
             m_timer = Time.time - m_delay;
-            stick.onCollisionApple += OnCollisionStick;
             m_score = 0;
+            health = 3;
 
             ClearApples();
         }
 
         private void OnDisable()
         {
-            if (stick)
-            {
-                stick.onCollisionApple -= OnCollisionStick;
-            }
+            ClearApples();
         }
 
         private void ClearApples()
@@ -57,11 +56,28 @@ namespace Golf
                 var go = appleSpawner.StoneDrop();
                 var apple = go.GetComponent<Apple>();
 
-                apple.onCollisionApple += OnCollisionApple;
+                //apple.onCollisionApple += OnCollisionApple;
+                apple.onCollisionApple += OnCollisionGround;
                 apple.onTriggerApple += OnTriggerBasket;
 
                 m_apples.Add(apple);
             }
+        }
+
+        private void OnCollisionGround()
+        {
+            Debug.Log(health);
+            health--;
+            if (health == 0)
+            {
+                GameOver();
+            }
+        }
+
+        private void GameOver()
+        {
+            Debug.Log("GAME OVER!!!");
+            onGameOver?.Invoke(m_score);
         }
 
         private void OnTriggerBasket()
@@ -78,10 +94,12 @@ namespace Golf
             //onScoreInc?.Invoke(m_score);
         }
 
+
+
         private void OnCollisionApple()
         {
-            Debug.Log("GAME OVER!!!");
-            onGameOver?.Invoke(m_score);
+            // Debug.Log("GAME OVER!!!");
+            // onGameOver?.Invoke(m_score);
         }
     }
 }

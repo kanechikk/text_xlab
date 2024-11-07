@@ -5,14 +5,15 @@ using UnityEngine;
 
 namespace Golf
 {
-    public class Basket : MonoBehaviour
+    public class Ground : MonoBehaviour
     {
         // public event Action onCollisionApple;
+
         // private void OnCollisionEnter(Collision other)
         // {
-        //     if (other.gameObject.TryGetComponent<Apple>(out var apple) && !apple.inBusket)
+        //     if (other.gameObject.TryGetComponent<Apple>(out var apple) && !apple.isDirty)
         //     {
-        //         apple.inBusket = true;
+        //         apple.isDirty = true;
         //         onCollisionApple?.Invoke();
         //     }
         // }
