@@ -87,6 +87,10 @@ namespace Golf
             {
                 gameOverState.isWin = true;
             }
+            else
+            {
+                gameOverState.isWin = false;
+            }
             gameOverState.gameObject.SetActive(true);
         }
     }

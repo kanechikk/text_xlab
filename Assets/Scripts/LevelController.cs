@@ -24,6 +24,9 @@ namespace Golf
         public event Action<int> onScoreInc;
         public event Action<int> onHealthDec;
 
+        [SerializeField] private AudioClip inBusketSound;
+        [SerializeField] private AudioClip missSound;
+
         public int goal;
 
         public void OnEnable()
@@ -76,6 +79,10 @@ namespace Golf
             {
                 onGameOver?.Invoke(false);
             }
+            else
+            {
+                SoundFXManager.instance.PlayMainSoundFXClip(missSound, transform, 1f);
+            }
         }
 
         // private void GameOver()
@@ -86,6 +93,7 @@ namespace Golf
 
         private void OnTriggerBasket()
         {
+            SoundFXManager.instance.PlayMainSoundFXClip(inBusketSound, transform, 1f);
             m_score++;
             Debug.Log($"score: {m_score}");
             onScoreInc?.Invoke(m_score);

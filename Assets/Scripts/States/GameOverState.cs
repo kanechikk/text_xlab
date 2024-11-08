@@ -10,7 +10,7 @@ namespace Golf
         public GameObject winUI;
         public MainMenuState mainMenuState;
         public GamePlayState gamePlayState;
-        public bool isWin = false;
+        public bool isWin;
 
         private void OnEnable()
         {
@@ -20,7 +20,7 @@ namespace Golf
             }
             else
             {
-                loseUI.SetActive(true);   
+                loseUI.SetActive(true);  
             }     
         }
 
