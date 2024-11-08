@@ -18,6 +18,16 @@ namespace Golf
             //scoreText.text = $"TOP SCORE: {GameInstance.score}";
         }
 
+        public void SettingsOn()
+        {
+            mainMenuUI.transform.GetChild(2).gameObject.SetActive(true);
+        }
+
+        public void SettingsOff()
+        {
+            mainMenuUI.transform.GetChild(2).gameObject.SetActive(false);
+        }
+
         private void OnDisable()
         {
             mainMenuUI.SetActive(false);

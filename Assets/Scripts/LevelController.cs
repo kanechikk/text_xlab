@@ -81,7 +81,7 @@ namespace Golf
             }
             else
             {
-                SoundFXManager.instance.PlayMainSoundFXClip(missSound, transform, 1f);
+                SoundFXManager.instance.PlaySoundFXClip(missSound, transform, 1f);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Golf
 
         private void OnTriggerBasket()
         {
-            SoundFXManager.instance.PlayMainSoundFXClip(inBusketSound, transform, 1f);
+            SoundFXManager.instance.PlaySoundFXClip(inBusketSound, transform, 1f);
             m_score++;
             Debug.Log($"score: {m_score}");
             onScoreInc?.Invoke(m_score);

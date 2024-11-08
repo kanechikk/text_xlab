@@ -35,7 +35,7 @@ namespace Golf
             if (strike)
             {
                 strike.Forward();
-                SoundFXManager.instance.PlayMainSoundFXClip(strikeAudio, transform, 1f);
+                SoundFXManager.instance.PlaySoundFXClip(strikeAudio, transform, 1f);
             }
         }
     }
