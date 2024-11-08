@@ -14,7 +14,7 @@ namespace Golf
         public CreatingStones appleSpawner;
         private float m_timer;
         [SerializeField]
-        private float m_delay = 2f;
+        private float m_delay = 2.5f;
         private int m_score = 0;
         private int health = 3;
 

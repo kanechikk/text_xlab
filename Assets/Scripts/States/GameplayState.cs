@@ -18,6 +18,7 @@ namespace Golf
             rootUI.SetActive(true);
             playerController.enabled = true;
             levelController.enabled = true;
+            gameOverState.isWin = false;
 
             for (int i = 0; i < healthBar.Length; i++)
             {

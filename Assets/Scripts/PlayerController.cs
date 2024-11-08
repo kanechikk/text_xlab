@@ -7,6 +7,7 @@ namespace Golf
     public class PlayerController : MonoBehaviour
     {
         public Strike strike;
+        [SerializeField] private AudioClip strikeAudio;
         //public Stick stick;
 
         private void FixedUpdate()
@@ -20,12 +21,21 @@ namespace Golf
             //     stick.Up();
             // }
 
-            if (strike != null)
+            // if (strike != null)
+            // {
+            //     if (Input.GetMouseButton(0))
+            //     {
+            //         strike.Forward();
+            //     }
+            // }
+        }
+
+        public void StrikeForward()
+        {
+            if (strike)
             {
-                if (Input.GetMouseButton(0))
-                {
-                    strike.Forward();
-                }
+                strike.Forward();
+                SoundFXManager.instance.PlayMainSoundFXClip(strikeAudio, transform, 1f);
             }
         }
     }
