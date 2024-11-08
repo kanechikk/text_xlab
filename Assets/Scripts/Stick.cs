@@ -23,18 +23,19 @@ namespace Golf
             m_rigidbody = GetComponent<Rigidbody>();
         }
 
-        private void FixedUpdate()
-        {
-            m_dir = (point.position - m_lastPointPosition).normalized;
-            m_lastPointPosition = point.position;
-        }
+        // private void FixedUpdate()
+        // {
+        //     m_dir = (point.position - m_lastPointPosition).normalized;
+        //     m_lastPointPosition = point.position;
+        // }
 
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent<Apple>(out var apple) && !apple.isDirty)
             {
                 apple.isDirty = true;
-                //var contact = other.contacts[0];
+                m_dir = ((point.position + Vector3.up * 2.5f) - transform.position).normalized;
+                Debug.Log(m_dir);
                 other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
                 other.rigidbody.drag = 1;
                 onCollisionApple?.Invoke();
