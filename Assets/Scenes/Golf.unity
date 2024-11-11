@@ -1239,6 +1239,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4607489187838822, guid: 00e2e59cbc04eab4a982218df54ce70b, type: 3}
   m_PrefabInstance: {fileID: 112707432}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &133818665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000010884548538, guid: 70870a0dc2abff84c9a4587c5beb11d2, type: 3}
+  m_PrefabInstance: {fileID: 784227904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &135036231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1749,7 +1754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &203486983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2419,7 +2424,7 @@ GameObject:
   - component: {fileID: 349313496}
   - component: {fileID: 349313497}
   m_Layer: 5
-  m_Name: HammerToggle
+  m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2636,13 +2641,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c441bf99ca5c1049ba0da0ed04e4b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stick: {fileID: 8970924565757588493}
-  ground: {fileID: 1980044356}
   appleSpawner: {fileID: 1447310414}
   m_delay: 2
+  mainMenuState: {fileID: 1341588487}
   inBusketSound: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
   missSound: {fileID: 8300000, guid: 80e397195ea2940b69ee7bdbded856a5, type: 3}
   goal: 5
+  earnCoins: 10
 --- !u!1 &385732242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,7 +2733,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1341588487}
         m_TargetAssemblyTypeName: Golf.MainMenuState, Assembly-CSharp
-        m_MethodName: Play
+        m_MethodName: CustomizationSettingsOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4429,7 +4434,7 @@ GameObject:
   - component: {fileID: 665546841}
   - component: {fileID: 665546842}
   m_Layer: 5
-  m_Name: BatToggle
+  m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5493,7 +5498,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000010884548538, guid: 70870a0dc2abff84c9a4587c5beb11d2, type: 3}
       propertyPath: m_Name
-      value: Pipe_Wrench
+      value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 1000010884548538, guid: 70870a0dc2abff84c9a4587c5beb11d2, type: 3}
       propertyPath: m_IsActive
@@ -6660,7 +6665,7 @@ GameObject:
   - component: {fileID: 893612935}
   - component: {fileID: 893612936}
   m_Layer: 5
-  m_Name: PipeToggle
+  m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8661,7 +8666,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1151292684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1341588487}
+        m_TargetAssemblyTypeName: Golf.MainMenuState, Assembly-CSharp
+        m_MethodName: CustomizationSettingsOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1151292684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8905,7 +8922,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000010148899198, guid: 3fe5e5b169873104ca3a52a601994ea5, type: 3}
       propertyPath: m_Name
-      value: Hammer_02
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 1000010148899198, guid: 3fe5e5b169873104ca3a52a601994ea5, type: 3}
       propertyPath: m_IsActive
@@ -10231,6 +10248,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuUI: {fileID: 2002964703}
   gamePlayState: {fileID: 2113352906}
+  tools:
+  - {fileID: 772713751036909167}
+  - {fileID: 1527846149}
+  - {fileID: 133818665}
+  toolOptions: {fileID: 652072259}
 --- !u!4 &1341588488
 Transform:
   m_ObjectHideFlags: 0
@@ -11175,6 +11197,11 @@ RectTransform:
   m_AnchoredPosition: {x: 239, y: 183}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1527846149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000010148899198, guid: 3fe5e5b169873104ca3a52a601994ea5, type: 3}
+  m_PrefabInstance: {fileID: 1178864581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1534139015
 GameObject:
   m_ObjectHideFlags: 0
@@ -15992,7 +16019,7 @@ GameObject:
   - component: {fileID: 7925632838580459658}
   - component: {fileID: 8362925497444943189}
   m_Layer: 0
-  m_Name: default
+  m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18684,7 +18711,7 @@ GameObject:
   - component: {fileID: 8970924565757588494}
   - component: {fileID: 8970924565757588493}
   m_Layer: 0
-  m_Name: Bat
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

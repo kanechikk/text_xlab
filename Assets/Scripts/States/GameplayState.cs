@@ -13,6 +13,7 @@ namespace Golf
         public TMPro.TextMeshProUGUI scoreText;
         private GameObject[] healthBar = new GameObject[3];
 
+
         private void OnEnable()
         {
             rootUI.SetActive(true);

@@ -21,9 +21,19 @@ namespace Golf
         private void OnEnable()
         {
             mainMenuUI.SetActive(true);
-            
-            //scoreText.text = $"TOP SCORE: {GameInstance.score}";
-        }
+
+            foreach (GameObject tool in tools)
+            {
+                if (tool.name == GameInstance.tool)
+                {
+                    tool.SetActive(true);
+                }
+                else if (tool.activeSelf)
+                {
+                    tool.SetActive(false);
+                }
+            }
+        }    
 
         public void SoundSettingsOn()
         {
@@ -57,7 +67,6 @@ namespace Golf
 
         private void ChangeTool(string name)
         {
-            Debug.Log($"tool name: {name}");
             if (tools != null)
             {
                 foreach (GameObject tool in tools)
@@ -65,12 +74,10 @@ namespace Golf
                     //Debug.Log(tool.name);
                     if (tool.name == name)
                     {
-                        Debug.Log($"turn on: {tool.name}");
                         tool.SetActive(true);
                     }
                     else if (tool.activeSelf)
                     {
-                        Debug.Log($"turn off: {tool.name}");
                         tool.SetActive(false);
                     }
                 }

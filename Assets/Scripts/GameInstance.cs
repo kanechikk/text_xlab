@@ -9,6 +9,22 @@ namespace Golf
 
         public Transform states;
 
+        public static string tool = "Bat";
+
+        private void OnEnable()
+        {
+            if (PlayerPrefs.HasKey("tool"))
+            {
+                tool = PlayerPrefs.GetString("tool");
+            }
+
+        }
+
+        // public void OnDisable()
+        // {
+        //     PlayerPrefs.SetInt("TopScore", score);
+        // }
+
         private void Start()
         {
             foreach (Transform child in states)

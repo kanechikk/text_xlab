@@ -10,9 +10,6 @@ namespace Golf
 {
     public class LevelController : MonoBehaviour
     {
-        // [SerializeField] private GameObject[] tools;
-        public Ground ground;
-        //public Basket basket;
         public CreatingStones appleSpawner;
         private float m_timer;
         [SerializeField]
@@ -75,27 +72,6 @@ namespace Golf
             }
         }
 
-        // private void onToolChanged(string toolName)
-        // {
-        //     Debug.Log("!!!");
-        //     if (tools != null)
-        //     {
-        //         foreach (GameObject tool in tools)
-        //         {
-        //             Debug.Log(tool.name);
-        //             if (tool.name == toolName)
-        //             {
-        //                 tool.SetActive(true);
-        //                 return;
-        //             }
-        //             else if (tool.activeSelf)
-        //             {
-        //                 tool.SetActive(false);
-        //             }
-        //         }
-        //     }
-        // }
-
         private void OnCollisionGround()
         {
             health--;
@@ -110,12 +86,6 @@ namespace Golf
             }
         }
 
-        // private void GameOver()
-        // {
-        //     Debug.Log("GAME OVER!!!");
-        //     onGameOver?.Invoke(false);
-        // }
-
         private void OnTriggerBasket()
         {
             SoundFXManager.instance.PlaySoundFXClip(inBusketSound, transform, 1f);
@@ -128,19 +98,5 @@ namespace Golf
             }
         }
 
-        // private void OnCollisionStick()
-        // {
-        //     //m_score++; 
-        //     //Debug.Log($"score: {m_score}");
-        //     //onScoreInc?.Invoke(m_score);
-        // }
-
-
-
-        // private void OnCollisionApple()
-        // {
-        //     // Debug.Log("GAME OVER!!!");
-        //     // onGameOver?.Invoke(m_score);
-        // }
     }
 }
