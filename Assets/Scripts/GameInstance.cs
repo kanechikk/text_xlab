@@ -9,7 +9,6 @@ namespace Golf
 
         public Transform states;
 
-
         private void Start()
         {
             foreach (Transform child in states)

@@ -6,10 +6,10 @@ namespace Golf
 {
     public class GameOverState : MonoBehaviour
     {
-        public GameObject loseUI;
-        public GameObject winUI;
-        public MainMenuState mainMenuState;
-        public GamePlayState gamePlayState;
+        [SerializeField] private GameObject loseUI;
+        [SerializeField] private GameObject winUI;
+        [SerializeField] private MainMenuState mainMenuState;
+        [SerializeField] private GamePlayState gamePlayState;
         public bool isWin;
 
         private void OnEnable()

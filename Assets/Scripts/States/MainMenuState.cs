@@ -30,7 +30,10 @@ namespace Golf
 
         private void OnDisable()
         {
-            mainMenuUI.SetActive(false);
+            if(mainMenuUI)
+            {
+                mainMenuUI.SetActive(false);
+            }
         }
 
         public void Play()
