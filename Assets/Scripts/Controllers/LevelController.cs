@@ -10,7 +10,7 @@ namespace Golf
 {
     public class LevelController : MonoBehaviour
     {
-        public Stick stick;
+        // [SerializeField] private GameObject[] tools;
         public Ground ground;
         //public Basket basket;
         public CreatingStones appleSpawner;
@@ -21,6 +21,7 @@ namespace Golf
         private int health = 3;
 
         private List<Apple> m_apples = new List<Apple>();
+        public MainMenuState mainMenuState;
 
         public event Action<bool> onGameOver;
         public event Action<int> onScoreInc;
@@ -36,13 +37,6 @@ namespace Golf
             m_timer = Time.time - m_delay;
             m_score = 0;
             health = 3;
-            ClearApples();
-            BeforeDropping();
-        }
-
-        private IEnumerator BeforeDropping()
-        {
-            yield return new WaitForSeconds(10f);
         }
 
         private void OnDisable()
@@ -75,10 +69,32 @@ namespace Golf
                 //apple.onCollisionApple += OnCollisionApple;
                 apple.onCollisionApple += OnCollisionGround;
                 apple.onTriggerApple += OnTriggerBasket;
+                //mainMenuState.onToolChanged += onToolChanged;
 
                 m_apples.Add(apple);
             }
         }
+
+        // private void onToolChanged(string toolName)
+        // {
+        //     Debug.Log("!!!");
+        //     if (tools != null)
+        //     {
+        //         foreach (GameObject tool in tools)
+        //         {
+        //             Debug.Log(tool.name);
+        //             if (tool.name == toolName)
+        //             {
+        //                 tool.SetActive(true);
+        //                 return;
+        //             }
+        //             else if (tool.activeSelf)
+        //             {
+        //                 tool.SetActive(false);
+        //             }
+        //         }
+        //     }
+        // }
 
         private void OnCollisionGround()
         {

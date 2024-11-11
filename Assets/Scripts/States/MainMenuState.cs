@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Golf
 {
@@ -9,7 +12,11 @@ namespace Golf
     {
         public GameObject mainMenuUI;
         public GamePlayState gamePlayState;
+        //public event Action<string> onToolChanged; 
+        [SerializeField] private GameObject[] tools;
         //public TextMeshProUGUI scoreText;
+
+        [SerializeField] private ToggleGroup toolOptions;
 
         private void OnEnable()
         {
@@ -18,14 +25,56 @@ namespace Golf
             //scoreText.text = $"TOP SCORE: {GameInstance.score}";
         }
 
-        public void SettingsOn()
+        public void SoundSettingsOn()
         {
-            mainMenuUI.transform.GetChild(2).gameObject.SetActive(true);
+            mainMenuUI.transform.GetChild(3).gameObject.SetActive(true);
         }
 
-        public void SettingsOff()
+        public void SoundSettingsOff()
         {
-            mainMenuUI.transform.GetChild(2).gameObject.SetActive(false);
+            mainMenuUI.transform.GetChild(3).gameObject.SetActive(false);
+        }
+
+        public void CustomizationSettingsOn()
+        {
+            mainMenuUI.transform.GetChild(4).gameObject.SetActive(true);
+        }
+
+        // public void SubmitCustomizationSettings()
+        // {
+            
+        // }
+
+        public void CustomizationSettingsOff()
+        {
+            Toggle toggle = toolOptions.ActiveToggles().FirstOrDefault();
+            PlayerPrefs.SetString("tool", $"{toggle.name}");
+            //Debug.Log(toggle.name);
+            ChangeTool(toggle.name);
+            //onToolChanged?.Invoke(toggle.name);
+            mainMenuUI.transform.GetChild(4).gameObject.SetActive(false);
+        }
+
+        private void ChangeTool(string name)
+        {
+            Debug.Log($"tool name: {name}");
+            if (tools != null)
+            {
+                foreach (GameObject tool in tools)
+                {
+                    //Debug.Log(tool.name);
+                    if (tool.name == name)
+                    {
+                        Debug.Log($"turn on: {tool.name}");
+                        tool.SetActive(true);
+                    }
+                    else if (tool.activeSelf)
+                    {
+                        Debug.Log($"turn off: {tool.name}");
+                        tool.SetActive(false);
+                    }
+                }
+            }
         }
 
         private void OnDisable()
