@@ -17,7 +17,7 @@ namespace Golf
             {
                 tool = PlayerPrefs.GetString("tool");
             }
-
+            Application.targetFrameRate = 300;
         }
 
         // public void OnDisable()

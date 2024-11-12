@@ -34,7 +34,7 @@ namespace Golf
             if (other.gameObject.TryGetComponent<Apple>(out var apple) && !apple.isDirty)
             {
                 apple.isDirty = true;
-                m_dir = ((point.position + Vector3.up * 2.7f) - transform.position).normalized;
+                m_dir = ((point.position + Vector3.up * 2.9f) - transform.position).normalized;
                 other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
                 other.rigidbody.drag = 1;
                 onCollisionApple?.Invoke();
